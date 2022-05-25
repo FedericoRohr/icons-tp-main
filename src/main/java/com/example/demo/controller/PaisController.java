@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.ContinenteDTO;
+import com.example.demo.dto.IconoDTO;
 import com.example.demo.dto.PaisBasicDTO;
 import com.example.demo.dto.PaisDTO;
 import com.example.demo.service.PaisService;
@@ -35,6 +36,13 @@ PaisService paisService;
 public ResponseEntity<List<PaisBasicDTO>> getAll(){// works whith PaisBasicDTO
 	List<PaisBasicDTO>lista=paisService.getAll();
 	return ResponseEntity.ok().body(lista);
+	
+}
+
+@GetMapping("/{id}")
+public ResponseEntity<PaisDTO> getOne(@PathVariable Long id){
+	PaisDTO returnable = paisService.getOne(id);
+	return ResponseEntity.ok().body(returnable);
 	
 }
 

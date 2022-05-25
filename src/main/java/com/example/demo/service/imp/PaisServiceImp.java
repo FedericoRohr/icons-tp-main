@@ -27,15 +27,15 @@ PaisMapper paisMapper;
 PaisRepository paisRepository;
 
 	public PaisDTO save(PaisDTO dto) {
-		PaisEntity pais= paisMapper.PaisDTO2Entity(dto);
+		PaisEntity pais= paisMapper.paisDTO2Entity(dto);
 		PaisEntity paisSave=paisRepository.save(pais);
-		PaisDTO resultado = paisMapper.PaisEntity2DTO(paisSave);
+		PaisDTO resultado = paisMapper.paisEntity2DTO(paisSave,false);
 		return resultado;
 	}
 
 	
 	public List<PaisBasicDTO> getAll() {
-		List<PaisBasicDTO>resultado=paisMapper.PaisEntity2BasicDTO(paisRepository.findAll());
+		List<PaisBasicDTO>resultado=paisMapper.paisEntity2BasicDTO(paisRepository.findAll());
 		return resultado;
 	}
 
@@ -55,6 +55,12 @@ PaisRepository paisRepository;
 		} else {
 			System.out.println("no existe");
 		}
+	}
+
+
+	
+	public PaisDTO getOne(Long id) {
+	 return paisMapper.paisEntity2DTO(paisRepository.getById(id), true);
 	}
 
 

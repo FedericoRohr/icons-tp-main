@@ -1,6 +1,8 @@
 package com.example.demo.dto;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.example.demo.entity.ContinenteEntity;
@@ -21,8 +23,9 @@ public class PaisDTO {
 	private Float superficie;
 	
 	private Long continenteId;
+	private String Imagen;
 	
 	
-	private Set<IconoDTO>icons= new HashSet<>();
+	private List<IconoDTO>icons= new ArrayList<>();
 	
 }

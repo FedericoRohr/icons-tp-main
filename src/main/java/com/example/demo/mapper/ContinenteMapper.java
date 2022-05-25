@@ -37,10 +37,9 @@ public class ContinenteMapper {
 		return respuesta;
 	}
 
-	public ContinenteEntity update(ContinenteEntity continente1, ContinenteDTO continente) {
-		ContinenteEntity entity = continente1;
-		entity.setDenominacion(continente.getDenominacion());
-		entity.setImagen(continente.getImagen());
+	public ContinenteEntity update(ContinenteEntity entity, ContinenteDTO dto) {
+		entity.setDenominacion(dto.getDenominacion());
+		entity.setImagen(dto.getImagen());
 		return entity;
 	}
 

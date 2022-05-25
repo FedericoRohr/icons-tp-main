@@ -31,6 +31,14 @@ public ResponseEntity<IconoDTO>creat(@RequestBody IconoDTO dto){
 	return ResponseEntity.status(HttpStatus.CREATED).body(icono);
 }
 
+@GetMapping("/{id}")
+public ResponseEntity<IconoDTO> getOne(@PathVariable Long id){
+	IconoDTO returnable = iconoService.getOne(id);
+	return ResponseEntity.ok().body(returnable);
+	
+}
+
+
 @GetMapping
 public ResponseEntity<List<IconoBasicDTO>> getAll(){
 	List<IconoBasicDTO> lista =iconoService.getAll();
@@ -49,6 +57,19 @@ public ResponseEntity<Void>update(@PathVariable Long id , @RequestBody IconoDTO 
 iconoService.update(id, icono);
 return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 }
+
+@PostMapping("/{id}/pais/{id2}")
+public ResponseEntity<Void>addPais(@PathVariable Long id , @PathVariable Long id2){
+	iconoService.addPais(id,id2);
+	return ResponseEntity.status(HttpStatus.CREATED).build();
+}
+
+@DeleteMapping("/{id}/pais/{id2}")
+public ResponseEntity<Void>deletePais(@PathVariable Long id , @PathVariable Long id2){
+	iconoService.removePais(id,id2);
+	return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+}
+
 
 
 }

@@ -31,6 +31,8 @@ public class PaisEntity {
 	
 	private boolean deleted=Boolean.FALSE;
 	
+	private String Imagen;
+	
 	@ManyToOne(fetch = FetchType.EAGER, cascade= CascadeType.ALL)
 	@JoinColumn(name="continente_id", insertable = false , updatable = false)
 	private ContinenteEntity continente;
@@ -47,6 +49,14 @@ public class PaisEntity {
 	inverseJoinColumns=@JoinColumn(name="icon_id"))
 	private Set<IconEntity>icons= new HashSet<>();
 	
+	
+	public void addIcon(IconEntity icon) {
+		icons.add(icon);
+	}
+	
+    public void removeicon(IconEntity icon) {
+    	icons.remove(icon);
+	}
 
 
 }

@@ -16,6 +16,12 @@ public void delete(Long id);
 
 void update(Long id, IconoDTO icono);
 
+IconoDTO getOne(Long id);
+
+void addPais(Long id, Long id2);
+
+void removePais(Long id, Long id2);
+
 
 
 

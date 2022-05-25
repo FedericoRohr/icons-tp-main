@@ -40,5 +40,12 @@ public class IconEntity {
 	@ManyToMany(mappedBy="icons", cascade=CascadeType.ALL)
 	private List<PaisEntity>paises = new ArrayList<>();
 	
+	public void addPais(PaisEntity pais) {
+		paises.add(pais);
+	}
+	
+    public void removePais(PaisEntity pais) {
+    	paises.remove(pais);
+	}
 
 }

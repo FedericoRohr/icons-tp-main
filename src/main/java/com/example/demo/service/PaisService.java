@@ -15,5 +15,7 @@ public interface PaisService {
 	public void delete(Long id);
 
 	public void update(Long id, PaisDTO pais);
+
+	public PaisDTO getOne(Long id);
  
 }

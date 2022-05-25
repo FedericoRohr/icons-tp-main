@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.IconoBasicDTO;
@@ -12,6 +13,7 @@ import com.example.demo.entity.IconEntity;
 import com.example.demo.entity.PaisEntity;
 import com.example.demo.mapper.IconoMapper;
 import com.example.demo.repository.IconoRepository;
+import com.example.demo.repository.PaisRepository;
 import com.example.demo.service.IconoService;
 
 import lombok.Getter;
@@ -23,27 +25,29 @@ public class IconoServiceImp implements IconoService {
 private IconoMapper iconoMapper;
 @Autowired
 private IconoRepository iconoRepository;
+@Autowired
+private PaisRepository paisRepository;
 
 public IconoDTO save(IconoDTO dto) {
-IconEntity entity = iconoMapper.IconDTO2Entity(dto);
+IconEntity entity = iconoMapper.iconDTO2Entity(dto);
 IconEntity entitySave =iconoRepository.save(entity);
-IconoDTO resultado = iconoMapper.IconEntity2DTO(entitySave);
+IconoDTO resultado = iconoMapper.iconEntity2DTO(entitySave,false);
 return resultado;
 	}
 
-@Override
+
 public List<IconoBasicDTO> getAll() {
 	List<IconEntity>lista=iconoRepository.findAll();
-	List<IconoBasicDTO>resultado=iconoMapper.ListIconoEntity2BasicDTO(lista);
+	List<IconoBasicDTO>resultado=iconoMapper.listIconoEntity2BasicDTO(lista);
 	return resultado;
 }
 
-@Override
+
 public void delete(Long id) {
 iconoRepository.deleteById(id);
 	}
 
-@Override
+
 public void update(Long id, IconoDTO dto) {
 	Optional<IconEntity> icono = iconoRepository.findById(id);
 	if (icono != null) {
@@ -54,6 +58,27 @@ public void update(Long id, IconoDTO dto) {
 		System.out.println("no existe");
 	}
 	
+}
+
+public IconoDTO getOne(Long id) {
+	return iconoMapper.iconEntity2DTO(iconoRepository.getById(id), true);
+	}
+
+@Modifying
+public void addPais(Long id, Long id2) {
+	IconEntity icono= iconoRepository.getById(id);
+    PaisEntity pais = paisRepository.getById(id2);
+   pais.addIcon(icono);
+  paisRepository.save(pais);
+ }
+
+
+@Modifying
+public void removePais(Long id, Long id2) {
+	IconEntity icono= iconoRepository.getById(id);
+    PaisEntity pais = paisRepository.getById(id2);
+    pais.removeicon(icono);
+    paisRepository.save(pais);
 }
 
 
