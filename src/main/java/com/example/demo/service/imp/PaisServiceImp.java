@@ -7,14 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.dto.ContinenteDTO;
 import com.example.demo.dto.PaisBasicDTO;
 import com.example.demo.dto.PaisDTO;
-import com.example.demo.entity.ContinenteEntity;
 import com.example.demo.entity.PaisEntity;
 import com.example.demo.mapper.PaisMapper;
 import com.example.demo.repository.PaisRepository;
 import com.example.demo.service.PaisService;
+
 
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +24,8 @@ public class PaisServiceImp implements PaisService {
 PaisMapper paisMapper;
 @Autowired
 PaisRepository paisRepository;
+
+
 
 	public PaisDTO save(PaisDTO dto) {
 		PaisEntity pais= paisMapper.paisDTO2Entity(dto);

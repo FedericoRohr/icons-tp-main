@@ -13,11 +13,15 @@ import com.example.demo.dto.PaisBasicDTO;
 import com.example.demo.dto.PaisDTO;
 import com.example.demo.entity.IconEntity;
 import com.example.demo.entity.PaisEntity;
+import com.example.demo.repository.ContinenteRepository;
 @Component
 public class PaisMapper {
 
 @Autowired
  private IconoMapper iconoMapper;
+
+@Autowired
+private ContinenteRepository continenteRepository;
 
 public PaisEntity paisDTO2Entity(PaisDTO dto) {
 		 PaisEntity pais= new  PaisEntity();
@@ -26,6 +30,7 @@ public PaisEntity paisDTO2Entity(PaisDTO dto) {
 		 pais.setDenominacion(dto.getDenominacion());
 	     pais.setSuperficie(dto.getSuperficie());
 	     pais.setImagen(dto.getImagen());
+	    pais.setContinente(continenteRepository.getById(dto.getContinenteId()));/// logre setear los continentes pero el deleteo en cascada no funciona
 	    return pais;
 	}
 
@@ -37,6 +42,7 @@ public PaisDTO paisEntity2DTO(PaisEntity entity, boolean loadIcons) {
 	pais.setId(entity.getId());
 	pais.setSuperficie(entity.getSuperficie());
 	pais.setImagen(entity.getImagen());
+	pais.setContiente(entity.getContinente());
 	if(loadIcons) {
 	List<IconoDTO>icons=iconoMapper.iconoEntitySet2DTOlist(entity.getIcons(),false);
 	pais.setIcons(icons);

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.IconFilterDTO;
 import com.example.demo.dto.IconoBasicDTO;
 import com.example.demo.dto.IconoDTO;
 import com.example.demo.entity.IconEntity;
@@ -14,6 +15,7 @@ import com.example.demo.entity.PaisEntity;
 import com.example.demo.mapper.IconoMapper;
 import com.example.demo.repository.IconoRepository;
 import com.example.demo.repository.PaisRepository;
+import com.example.demo.repository.specification.IconSpecification;
 import com.example.demo.service.IconoService;
 
 import lombok.Getter;
@@ -27,6 +29,10 @@ private IconoMapper iconoMapper;
 private IconoRepository iconoRepository;
 @Autowired
 private PaisRepository paisRepository;
+
+
+@Autowired
+private IconSpecification iconSpecification;
 
 public IconoDTO save(IconoDTO dto) {
 IconEntity entity = iconoMapper.iconDTO2Entity(dto);
@@ -79,6 +85,15 @@ public void removePais(Long id, Long id2) {
     PaisEntity pais = paisRepository.getById(id2);
     pais.removeicon(icono);
     paisRepository.save(pais);
+}
+
+
+@Override
+public List<IconoDTO> getDetailsByFilter(String name, String date, List<Long> cities, String order) {
+IconFilterDTO filter = new IconFilterDTO(name,date,cities,order);
+List<IconEntity>iconos=iconoRepository.findAll(iconSpecification.getByFilters(filter));
+List<IconoDTO>resultado=iconoMapper.iconoEntity2DTOlist(iconos, true);
+	return resultado;
 }
 
 

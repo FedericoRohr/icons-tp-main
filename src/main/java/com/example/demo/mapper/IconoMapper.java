@@ -76,9 +76,17 @@ private	PaisMapper paisMapper;
 		return entity;
 	}
 
-	public List<IconoDTO> iconoEntitySet2DTOlist(Set<IconEntity> icons, boolean loadPaises) {
+	public List<IconoDTO> iconoEntitySet2DTOlist(Set<IconEntity> iconos, boolean loadPaises) {
 		List<IconoDTO>dtos=new ArrayList<>();
-		for(IconEntity entity:icons) {
+		for(IconEntity entity:iconos) {
+			dtos.add(this.iconEntity2DTO(entity, loadPaises));
+		}
+		return dtos;
+	}
+	
+	public List<IconoDTO> iconoEntity2DTOlist(List<IconEntity> iconos, boolean loadPaises) {
+		List<IconoDTO>dtos=new ArrayList<>();
+		for(IconEntity entity:iconos) {
 			dtos.add(this.iconEntity2DTO(entity, loadPaises));
 		}
 		return dtos;

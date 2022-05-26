@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.dto.ContinenteDTO;
 import com.example.demo.dto.IconoBasicDTO;
@@ -71,5 +72,16 @@ public ResponseEntity<Void>deletePais(@PathVariable Long id , @PathVariable Long
 }
 
 
+@GetMapping("/filter")
+public ResponseEntity<List<IconoDTO>>getDetailsByFilter(
+		@RequestParam(required=false) String name,
+		@RequestParam(required=false) String date,
+		@RequestParam(required=false) List<Long> cities,
+		@RequestParam(required=false, defaultValue="ASC") String order
+		){
+	List<IconoDTO>lista=iconoService.getDetailsByFilter(name,date,cities,order);
+	
+	return ResponseEntity.status(HttpStatus.OK).body(lista);
+}
 
 }

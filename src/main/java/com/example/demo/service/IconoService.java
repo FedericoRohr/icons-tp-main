@@ -23,6 +23,9 @@ void addPais(Long id, Long id2);
 void removePais(Long id, Long id2);
 
 
+List<IconoDTO> getDetailsByFilter(String name, String date, List<Long> cities, String order);
+
+
 
 
 

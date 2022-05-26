@@ -1,12 +1,9 @@
 package com.example.demo.dto;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import com.example.demo.entity.ContinenteEntity;
-import com.example.demo.entity.IconEntity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -22,7 +19,10 @@ public class PaisDTO {
 	
 	private Float superficie;
 	
+	private ContinenteEntity contiente;
+	
 	private Long continenteId;
+	
 	private String Imagen;
 	
 	
