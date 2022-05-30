@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.dto.ContinenteDTO;
 import com.example.demo.entity.ContinenteEntity;
@@ -25,6 +26,8 @@ public class ContinenteServiceImp implements ContinenteService {
 	@Autowired
 	private ContinenteRepository contienteRepository;
 
+	@Override
+	@Transactional
 	public ContinenteDTO save(ContinenteDTO dto) {
 		ContinenteEntity entity = continenteMapper.continenteDTO2Entity(dto);
 		ContinenteEntity contineteSave = contienteRepository.save(entity);/// aca se le asigna el id
@@ -33,17 +36,22 @@ public class ContinenteServiceImp implements ContinenteService {
 	}
 
 	@Override
+	@Transactional
 	public List<ContinenteDTO> getAllContinentes() {
 		List<ContinenteEntity> lista = contienteRepository.findAll();
 		List<ContinenteDTO> resultado = continenteMapper.listarEntity2DTO(lista);
 		return resultado;
 	}
 
+	@Override
+	@Transactional
 	public void delete(Long id) {
 		contienteRepository.deleteById(id);
 	}
 
+	@Override
 	@Modifying
+	@Transactional
 	public void update(Long id, ContinenteDTO dto) {
 		Optional<ContinenteEntity> continente = contienteRepository.findById(id);
 		if (continente != null) {
