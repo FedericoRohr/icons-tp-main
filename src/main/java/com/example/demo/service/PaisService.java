@@ -17,5 +17,7 @@ public interface PaisService {
 	public void update(Long id, PaisDTO pais);
 
 	public PaisDTO getOne(Long id);
+	
+	public void deleteByContinente(Long idContinente);
  
 }

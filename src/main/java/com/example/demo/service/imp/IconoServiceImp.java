@@ -13,6 +13,7 @@ import com.example.demo.dto.IconoBasicDTO;
 import com.example.demo.dto.IconoDTO;
 import com.example.demo.entity.IconEntity;
 import com.example.demo.entity.PaisEntity;
+import com.example.demo.exeption.ParamNotFound;
 import com.example.demo.mapper.IconoMapper;
 import com.example.demo.repository.IconoRepository;
 import com.example.demo.repository.PaisRepository;
@@ -63,13 +64,13 @@ public class IconoServiceImp implements IconoService {
 	@Transactional
 	public void update(Long id, IconoDTO dto) {
 		Optional<IconEntity> icono = iconoRepository.findById(id);
-		if (icono != null) {
+		if(!icono.isPresent()) {
+			throw new ParamNotFound("id no valido");
+		}
 			IconEntity existente = icono.get();
 			existente = iconoMapper.update(existente, dto);
 			iconoRepository.save(existente);
-		} else {
-			System.out.println("no existe");
-		}
+		
 
 	}
 	@Override

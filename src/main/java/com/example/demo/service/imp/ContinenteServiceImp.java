@@ -10,9 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.dto.ContinenteDTO;
 import com.example.demo.entity.ContinenteEntity;
+import com.example.demo.exeption.ParamNotFound;
 import com.example.demo.mapper.ContinenteMapper;
 import com.example.demo.repository.ContinenteRepository;
 import com.example.demo.service.ContinenteService;
+import com.example.demo.service.PaisService;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +23,8 @@ import lombok.Setter;
 @Setter
 @Service
 public class ContinenteServiceImp implements ContinenteService {
+	@Autowired
+	private PaisService paisService;
 	@Autowired
 	private ContinenteMapper continenteMapper;
 	@Autowired
@@ -47,20 +51,21 @@ public class ContinenteServiceImp implements ContinenteService {
 	@Transactional
 	public void delete(Long id) {
 		contienteRepository.deleteById(id);
-	}
+		paisService.deleteByContinente(id);
+		}
 
 	@Override
 	@Modifying
 	@Transactional
 	public void update(Long id, ContinenteDTO dto) {
 		Optional<ContinenteEntity> continente = contienteRepository.findById(id);
-		if (continente != null) {
+		if(!continente.isPresent()) {
+			throw new ParamNotFound("id no valido");
+		}
 			ContinenteEntity existente = continente.get();
 			existente = continenteMapper.update(existente, dto);
 			contienteRepository.save(existente);
-		} else {
-			System.out.println("no existe");
-		}
+		
 	}
 
 }

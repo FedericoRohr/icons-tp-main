@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.demo.dto.PaisBasicDTO;
 import com.example.demo.dto.PaisDTO;
 import com.example.demo.entity.PaisEntity;
+import com.example.demo.exeption.ParamNotFound;
 import com.example.demo.mapper.PaisMapper;
 import com.example.demo.repository.PaisRepository;
 import com.example.demo.service.PaisService;
@@ -55,19 +56,30 @@ public class PaisServiceImp implements PaisService {
 	@Transactional
 	public void update(Long id, PaisDTO dto) {
 		Optional<PaisEntity> pais = paisRepository.findById(id);
-		if (pais != null) {
+		if(!pais.isPresent()) {
+			throw new ParamNotFound("id no valido");
+		}
 			PaisEntity existente = pais.get();
 			existente = paisMapper.update(existente, dto);
 			paisRepository.save(existente);
-		} else {
-			System.out.println("no existe");
-		}
+		
 	}
 	
 	@Override
 	@Transactional
 	public PaisDTO getOne(Long id) {
 		return paisMapper.paisEntity2DTO(paisRepository.getById(id), true);
+	}
+	
+	@Transactional
+	@Override
+	public void deleteByContinente(Long continenteId) {
+		List<PaisEntity>entities=paisRepository.findAll();
+		for(PaisEntity p :entities) {
+			if(p.getContinenteId()==continenteId) {
+				paisRepository.delete(p);
+			}
+		}
 	}
 
 }
