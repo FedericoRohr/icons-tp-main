@@ -1,0 +1,518 @@
+{
+	"info": {
+		"_postman_id": "ab07d8bc-3e7e-4e47-bb3c-fa96159566e0",
+		"name": "icons",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20677265"
+	},
+	"item": [
+		{
+			"name": "continente",
+			"item": [
+				{
+					"name": "continente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"imagen\":\"url/dad.jpg\",\r\n    \"denominacion\":\"africa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/continentes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"continentes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "continente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/continentes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"continentes"
+							],
+							"query": [
+								{
+									"key": "Autorization",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcmVzaUBnbWFpbC5jb20iLCJleHAiOjE2NTU5NjY0NjAsImlhdCI6MTY1NTkzMDQ2MH0.ow3giDBncvu8VmXBatAvKqM8sxY4uQQv-RGC48wY7w4",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "continente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"imagen\":\"otra.jpg\",\r\n    \"denominacion\":\"testeando update\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/continentes/80",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"continentes",
+								"80"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "continente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/continentes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"continentes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "pais",
+			"item": [
+				{
+					"name": "pais",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"denominacion\":\"prueba eliminacion\",\r\n    \"cantidadHabitantes\":4,\r\n    \"superficie\":3,\r\n    \"continenteId\":1,\r\n    \"icons\": [{}]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/paises",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"paises"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pais",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/paises?Authorization=Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcmVzaUBnbWFpbC5jb20iLCJleHAiOjE2NTU5Njc2MjAsImlhdCI6MTY1NTkzMTYyMH0.1sPbSZYgQdXsUz-2PDaFfxrRa25pk9SEvFNRg_TqeLw",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"paises"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcmVzaUBnbWFpbC5jb20iLCJleHAiOjE2NTU5Njc2MjAsImlhdCI6MTY1NTkzMTYyMH0.1sPbSZYgQdXsUz-2PDaFfxrRa25pk9SEvFNRg_TqeLw"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "paisSolo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/paises/48",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"paises",
+								"48"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pais",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"denominacion\":\"prueba update\",\r\n    \"cantidadHabitantes\":2,\r\n    \"superficie\":1,\r\n    \"continenteId\":2\r\n   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/paises/37",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"paises",
+								"37"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pais",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/paises/51",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"paises",
+								"51"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "icono",
+			"item": [
+				{
+					"name": "icono",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"denominacion\":\"hola\",\r\n    \"imagen\":\"icono.jpeg\",\r\n    \"fechaCreacion\":\"2022-05-26\",\r\n    \"altura\":\"3\",\r\n    \"historia\":\"abc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/icons",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"icons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "icono",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/icons",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"icons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "iconoSolo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/icons/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"icons",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "icono",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"denominacion\":\"prueba\",\r\n    \"imagen\":\"prueba.jpeg\",\r\n    \"fechaCreacion\":\"2000-05-21\",\r\n    \"altura\":\"2\",\r\n    \"historia\":\"def\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/icons/25",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"icons",
+								"25"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "icono",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/icons/27",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"icons",
+								"27"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "especiales",
+			"item": [
+				{
+					"name": "addPaises",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/icons/4/pais/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"icons",
+								"4",
+								"pais",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removePais",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/icons/40/pais/41",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"icons",
+								"40",
+								"pais",
+								"41"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "combinados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/icons/filter?name=hola&cities=37,38",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"icons",
+								"filter"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2000-05-21",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "hola"
+								},
+								{
+									"key": "order",
+									"value": "ASC",
+									"disabled": true
+								},
+								{
+									"key": "cities",
+									"value": "37,38"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "singin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"pepito@gmail.com\",\r\n    \"password\":\"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/singup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"singup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "singup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"preso@gmail.com\",\r\n    \"password\":\"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/singin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"singin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
